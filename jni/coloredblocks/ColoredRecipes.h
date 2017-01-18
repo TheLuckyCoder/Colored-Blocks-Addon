@@ -7,11 +7,10 @@ class ColoredRecipes
 {
 public: 
 	static void initRecipes(Recipes *instance);
-	static void initFurnaceRecipes(FurnaceRecipes *instance);
 private: 	
 	static Recipes* _Instance; 	
 	static std::vector<Recipes::Type> _ingredients; 	 	
-	static void pushIngredient(int, int, char); 
+	static void pushIngredient(int id, int data, char letter); 
 	static void addRecipe(int, int, int, const std::vector<std::string>&); 
 };
 

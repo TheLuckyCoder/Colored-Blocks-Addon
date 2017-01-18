@@ -1,12 +1,12 @@
 #include <jni.h>
 #include <dlfcn.h>
 #include <stdlib.h>
-#include <android/log.h>
 #include "Substrate.h"
 
 #include "minecraftpe/world/item/AuxDataBlockItem.h"
 #include "minecraftpe/client/renderer/block/BlockGraphics.h"
 
+#include "coloredblocks/ColoredRecipes.h"
 #include "coloredblocks/ColoredBlock.h"
 #include "coloredblocks/StainedGlass.h"
 
@@ -28,18 +28,9 @@ void (*_initCreativeItems)();
 void initCreativeItems()
 {
 	_initCreativeItems();
-	for (int id = 210; id <= 216; id++)
-	{
-	for (int aux = 0; aux <= 15; aux++)
-		Item::addCreativeItem(id, aux);
-	//for (int i = 0; i <= 15; i++)
-	//	Item::addCreativeItem(211, i);
-	//for (int i = 0; i <= 15; i++)
-	//	Item::addCreativeItem(212, i);
-	//for (int i = 0; i <= 15; i++)
-	//	Item::addCreativeItem(213, i);
-	//for (int i = 0; i <= 15; i++)
-	//	Item::addCreativeItem(214, i);
+	for (int id = 210; id <= 216; id++) {
+		for (int aux = 0; aux <= 15; aux++)
+			Item::addCreativeItem(id, aux);
 	}
 }
 
@@ -75,15 +66,24 @@ void initBlocks()
 	Block::mBlocks[213] = new ColoredBlock(213, "coloredCobblestone", "Cobblestone", MaterialType::STONE);
 	Block::mBlocks[214] = new ColoredBlock(214, "coloredIron", "Iron", MaterialType::METAL);
 	Block::mBlocks[215] = new ColoredBlock(215, "coloredPlanks", "Planks", MaterialType::WOOD);
-	Block::mBlocks[215] = new StainedGlass(216, "stainedGlass");
+	Block::mBlocks[216] = new StainedGlass(216, "stainedGlass");
+}
+
+void (*_initRecipes)(Recipes*);
+void initRecipes(Recipes *self)
+{
+	_initRecipes(self);
+
+	ColoredRecipes::initRecipes(self);
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM*,void*)
 {
-	MSHookFunction((void*) &BlockGraphics::initBlocks, (void*) &initBlockGraphics, (void**) &_initBlockGraphics);
-	MSHookFunction((void*) &Block::initBlocks, (void*) &initBlocks, (void**) &_initBlocks);
-	MSHookFunction((void*) &Item::initCreativeItems, (void*) &initCreativeItems, (void**) &_initCreativeItems);
 	MSHookFunction((void*) &Item::registerItems, (void*) &registerItems, (void**) &_registerItems);
+	MSHookFunction((void*) &Item::initCreativeItems, (void*) &initCreativeItems, (void**) &_initCreativeItems);
+	MSHookFunction((void*) &Block::initBlocks, (void*) &initBlocks, (void**) &_initBlocks);
+	MSHookFunction((void*) &BlockGraphics::initBlocks, (void*) &initBlockGraphics, (void**) &_initBlockGraphics);
+	MSHookFunction((void*) &Recipes::init, (void*) &initRecipes, (void**) &_initRecipes);
 	
 	return JNI_VERSION_1_6;
 }

@@ -3,42 +3,48 @@
 Recipes* ColoredRecipes::_Instance;
 std::vector<Recipes::Type> ColoredRecipes::_ingredients;
 
-void ColoredRecipes::initFurnaceRecipes(FurnaceRecipes *instance) {
-	for(int data = 0; data < 16; data++)
-		instance->addFurnaceRecipeAuxData(ColoredBlocks::mColoredStone->blockId, 0, ItemInstance(ColoredBlocks::mColoredCobblestone->blockId, 1, 0));
-}
-
 void ColoredRecipes::initRecipes(Recipes *instance) {	
 	_Instance = instance;		
 	
 	for(int data = 0; data <= 15; data++) {
+		// Stone
 		pushIngredient(1, 0, 'b');
 		pushIngredient(351, data, 'd');
-		addRecipe(ColoredBlocks::mColoredStone->blockId, 1, data, {"bd", "  "});
+		addRecipe(210, 1, data, {"bd"});
 		
+		// Cobblestone
 		pushIngredient(4, 0, 'b');
 		pushIngredient(351, data, 'd');
-		addRecipe(ColoredBlocks::mColoredCobblestone->blockId, 1, data, {"bd", "  "});
+		addRecipe(213, 1, data, {"bd"});
 		
+		// Stone Brick
 		pushIngredient(98, 0, 'b');
 		pushIngredient(351, data, 'd');
-		addRecipe(ColoredBlocks::mColoredStoneBrick->blockId, 1, data, {"bd", "  "});
+		addRecipe(212, 1, data, {"bd"});
 		
+		// Brick
 		pushIngredient(45, 0, 'b');
 		pushIngredient(351, data, 'd');
-		addRecipe(ColoredBlocks::mColoredBrick->blockId, 1, data, {"bd", "  "});
+		addRecipe(211, 1, data, {"bd"});
 		
+		// Iron
 		pushIngredient(42, 0, 'b');
 		pushIngredient(351, data, 'd');
-		addRecipe(ColoredBlocks::mColoredIron->blockId, 1, data, {"bd", "  "});
+		addRecipe(214, 1, data, {"bd"});
 		
-		//pushIngredient(42, 0, 'b');
-		//pushIngredient(351, data, 'd');
-		//addRecipe(ColoredBlocks::mStainedGlass->blockId, 1, data, {"bd", "  "});
+		// Planks
+		pushIngredient(5, 0, 'b');
+		pushIngredient(351, data, 'd');
+		addRecipe(215, 1, data, {"bd"});
 		
-		//Stone to Stone Brick
-		pushIngredient(ColoredBlocks::mColoredStone->blockId, data, 'b');
-		addRecipe(ColoredBlocks::mColoredStoneBrick->blockId, 1, data, {"bb", "bb"});
+		// Glass
+		pushIngredient(42, 0, 'b');
+		pushIngredient(351, data, 'd');
+		addRecipe(216, 1, data, {"bd"});
+		
+		// Stone to Stone Brick
+		pushIngredient(210, data, 'b');
+		addRecipe(212, 1, data, {"bb", "bb"});
 	}
 } 
 

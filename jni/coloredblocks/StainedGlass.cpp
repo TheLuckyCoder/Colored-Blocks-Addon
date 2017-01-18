@@ -1,6 +1,6 @@
 #include "StainedGlass.h"
 
-StainedGlass::StainedGlass(short id, const std::string &descriptionName) : HalfTransparentBlock(descriptionName, id, Material::getMaterial(MaterialType::GLASS), false) {
+StainedGlass::StainedGlass(short id, const std::string &descriptionName) : HalfTransparentBlock(descriptionName, id, Material::getMaterial(MaterialType::GLASS), true) {
 	init();
 	creativeCategory = CreativeItemCategory::Blocks;
 }
