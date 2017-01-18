@@ -8,6 +8,7 @@
 #include "minecraftpe/client/renderer/block/BlockGraphics.h"
 
 #include "coloredblocks/ColoredBlock.h"
+#include "coloredblocks/StainedGlass.h"
 
 void (*_registerItems)();
 void registerItems()
@@ -20,13 +21,14 @@ void registerItems()
 	Item::mItems[213] = new AuxDataBlockItem("coloredCobblestone", 213 - 256, Block::mBlocks[213]);
 	Item::mItems[214] = new AuxDataBlockItem("coloredIron", 214 - 256, Block::mBlocks[214]);
 	Item::mItems[215] = new AuxDataBlockItem("coloredPlanks", 215 - 256, Block::mBlocks[215]);
+	Item::mItems[216] = new AuxDataBlockItem("coloredPlanks", 216 - 256, Block::mBlocks[216]);
 }
 
 void (*_initCreativeItems)();
 void initCreativeItems()
 {
 	_initCreativeItems();
-	for (int id = 210; id <= 215; id++)
+	for (int id = 210; id <= 216; id++)
 	{
 	for (int aux = 0; aux <= 15; aux++)
 		Item::addCreativeItem(id, aux);
@@ -58,6 +60,8 @@ void initBlockGraphics()
 	BlockGraphics::mBlocks[214]->setTextureItem("colored_iron");
 	BlockGraphics::mBlocks[215] = new BlockGraphics("dirt");
 	BlockGraphics::mBlocks[215]->setTextureItem("colored_planks");
+	BlockGraphics::mBlocks[216] = new BlockGraphics("glass");
+	BlockGraphics::mBlocks[216]->setTextureItem("stained_glass");
 }
 
 void (*_initBlocks)();
@@ -71,6 +75,7 @@ void initBlocks()
 	Block::mBlocks[213] = new ColoredBlock(213, "coloredCobblestone", "Cobblestone", MaterialType::STONE);
 	Block::mBlocks[214] = new ColoredBlock(214, "coloredIron", "Iron", MaterialType::METAL);
 	Block::mBlocks[215] = new ColoredBlock(215, "coloredPlanks", "Planks", MaterialType::WOOD);
+	Block::mBlocks[215] = new StainedGlass(216, "stainedGlass");
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM*,void*)
