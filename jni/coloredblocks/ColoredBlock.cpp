@@ -2,8 +2,11 @@
 
 ColoredBlock::ColoredBlock(short id, const std::string &descriptionName, std::string blockName, MaterialType material) : Block(descriptionName, id, Material::getMaterial(material)) {
 	init();
-	creativeCategory = CreativeItemCategory::Blocks;
+	setCategory(CreativeItemCategory::Blocks);
+	
 	this->blockName = blockName;
+	if (blockName == "Iron")
+		setCategory(CreativeItemCategory::Decorations);
 }
 
 std::string ColoredBlock::buildDescriptionName(unsigned char aux) const

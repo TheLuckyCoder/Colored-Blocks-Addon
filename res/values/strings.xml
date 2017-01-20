@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Colored Blocks Addon</string>
+	<string name="download_bl">Download BlockLauncher</string>
+    <string name="step_one">Step 1: You will need to install BlockLauncher. You can get it from Play Store for free.</string>
+    <string name="step_two">Step 2: Make sure that the addons and ModPE Scripts are enabled.</string>
+</resources>
+

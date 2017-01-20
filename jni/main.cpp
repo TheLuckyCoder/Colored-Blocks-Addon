@@ -28,6 +28,8 @@ void (*_initCreativeItems)();
 void initCreativeItems()
 {
 	_initCreativeItems();
+	
+	
 	for (int id = 210; id <= 216; id++) {
 		for (int aux = 0; aux <= 15; aux++)
 			Item::addCreativeItem(id, aux);
